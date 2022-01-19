@@ -1,13 +1,19 @@
 package com.microservice.serviceproduct.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name="products")
+@Table(name = "products")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Product {
 
     @Id
@@ -18,10 +24,10 @@ public class Product {
     private int stock;
     private double price;
     private String status;
-    @Column(name="create_at")
+    @Column(name = "create_at")
     private LocalDate creatAt;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="category_id")
+    @JoinColumn(name = "category_id")
     private Category category;
 
 }
