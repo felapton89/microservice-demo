@@ -5,11 +5,11 @@ import com.microservice.serviceproduct.entity.Product;
 import com.microservice.serviceproduct.repository.ProductRepository;
 import com.microservice.serviceproduct.service.ProductService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
@@ -30,8 +30,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product getProduct(Long id) {
         return productRepository.findById(id)
-                .orElseThrow(
-                        () -> new IllegalStateException("Product with id: " + id + " does not exist.")
+                .orElse(
+                        null
                 );
     }
 
@@ -43,10 +43,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void updateProduct(Product product) {
-        Product editProduct = productRepository.findById(product.getId())
+    public void updateProduct(Long id, Product product) {
+        Product editProduct = productRepository.findById(id)
                 .orElseThrow(
-                        () -> new IllegalStateException("Product not found")
+                        () -> new NoSuchElementException("Product with id: " + id + " not found")
                 );
         editProduct.setName(product.getName());
         editProduct.setDescription(product.getDescription());
@@ -59,19 +59,19 @@ public class ProductServiceImpl implements ProductService {
     public void deleteProduct(Long id) {
         Product deleteProduct = productRepository.findById(id)
                 .orElseThrow(
-                        () -> new IllegalStateException("Product not found")
+                        () -> new NoSuchElementException("Product with id: " + id + " not found")
                 );
         deleteProduct.setStatus("DELETED");
         productRepository.save(deleteProduct);
     }
 
     @Override
-    public Product updateStock(Long idProduct, int quantity) {
+    public void updateStock(Long idProduct, int quantity) {
         Product updateStockProduct = productRepository.findById(idProduct)
                 .orElseThrow(
                         () -> new IllegalStateException("Product not found")
                 );
         updateStockProduct.setStock(updateStockProduct.getStock() + quantity);
-        return productRepository.save(updateStockProduct);
+        productRepository.save(updateStockProduct);
     }
 }

@@ -51,7 +51,8 @@ public class ProductServiceMockTest {
 
     @Test
     public void whenValidUpdateStock_ThenReturnNewStock() {
-        Product newStock = productService.updateStock(1L, 1);
-         Assertions.assertThat(newStock.getStock()).isEqualTo(100);
+        Product p = productRepository.findById(1L).get();
+        productService.updateStock(1L, 1);
+        Assertions.assertThat(p.getStock()).isEqualTo(100);
     }
 }
