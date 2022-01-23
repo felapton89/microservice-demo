@@ -8,4 +8,8 @@ INSERT INTO regions (id, name) VALUES (7, 'Oceanía');
 INSERT INTO regions (id, name) VALUES (8, 'Antártida');
 
 INSERT INTO customers (id, number_id, firstname, lastname , email, photo_url, region_id, state)
-VALUES(1,'32404580', 'Andrés', 'Guzmán', 'profesor@bolsadeideas.com', '', 1, 'CREATED');
+VALUES(1,'12345678', 'Pedro', 'Pérez', 'pedrope@mail.com', '', 1, 'CREATED');
+INSERT INTO customers (id, number_id, firstname, lastname , email, photo_url, region_id, state)
+VALUES(2,'87654321', 'Marta', 'Lopez', 'malopez@mail.com', '', 4, 'CREATED');
+INSERT INTO customers (id, number_id, firstname, lastname , email, photo_url, region_id, state)
+VALUES(3,'13246578', 'Carlos', 'Atencio', 'carlosate@mail.com', '', 2, 'CREATED');
