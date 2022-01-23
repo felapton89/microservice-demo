@@ -17,7 +17,7 @@ public class Invoice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "number_invoice")
+    @Column(name = "number_invoice", unique = true)
     private String numberInvoice;
 
     private String description;
@@ -27,6 +27,7 @@ public class Invoice {
 
     private String state;
 
+    @Column(name = "customer_id")
     private Long customerId;
 
     @Valid // validamos los items
