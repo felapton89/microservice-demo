@@ -7,6 +7,7 @@ import com.microservice.servicecustomer.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.ValidationException;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,8 +46,18 @@ public class CustomerServiceImpl implements CustomerService {
             Customer edit = optional.get();
             edit.setFirstname(customer.getFirstname());
             edit.setLastname(customer.getLastname());
-            edit.setEmail(customer.getEmail());
-            edit.setNumberID(customer.getNumberID());
+            if (!edit.getEmail().equals(customer.getEmail())) {
+                if (repository.findByEmail(customer.getEmail()) != null) {
+                    throw new ValidationException("Email taken");
+                }
+                edit.setEmail(customer.getEmail());
+            }
+            if (!edit.getNumberID().equals(customer.getNumberID())) {
+                if (repository.findByNumberID(customer.getNumberID()) != null) {
+                    throw new ValidationException("NumberID taken");
+                }
+                edit.setNumberID(customer.getNumberID());
+            }
             edit.setPhotoUrl(customer.getPhotoUrl());
             repository.save(edit);
         }

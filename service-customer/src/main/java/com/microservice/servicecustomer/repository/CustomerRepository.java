@@ -11,4 +11,8 @@ import java.util.List;
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
     List<Customer> findByRegion(Region region);
+
+    Customer findByEmail(String email);
+
+    Customer findByNumberID(String numberID);
 }
