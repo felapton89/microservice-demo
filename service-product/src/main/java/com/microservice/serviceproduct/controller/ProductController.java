@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/products")
@@ -61,7 +59,7 @@ public class ProductController {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> editProduct(@PathVariable("id") Long id, @Valid @RequestBody Product product, BindingResult result) {
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ErrorMessage.formatMessage(result));
         }
 
