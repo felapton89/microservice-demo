@@ -21,6 +21,11 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
+    public List<Invoice> listByCustomerId(Long customerId) {
+        return invoiceRepository.findByCustomerId(customerId);
+    }
+
+    @Override
     public Invoice getInvoice(Long id) {
         return invoiceRepository.findById(id).orElse(null);
     }

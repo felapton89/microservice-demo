@@ -8,6 +8,8 @@ public interface InvoiceService {
 
     List<Invoice> listAllInvoice();
 
+    List<Invoice> listByCustomerId(Long customerId);
+
     Invoice getInvoice(Long id);
 
     void addInvoice(Invoice invoice);
