@@ -26,4 +26,7 @@ logging:
     org:
       hibernate:
         SQL: debug
-
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8099/eureka/

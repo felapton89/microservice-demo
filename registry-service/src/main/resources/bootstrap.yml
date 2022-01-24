@@ -1,1 +1,9 @@
-
+spring:
+  application:
+    name: service-registry
+  cloud:
+    config:
+      uri: http://localhost:8081
+      default-label: dev
+      username: root
+      password: s3cr3t
