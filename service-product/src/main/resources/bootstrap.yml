@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: product-service
+  cloud:
+    config:
+      uri: http://localhost:8081
+      default-label: dev
+      username: root
+      password: s3cr3t
