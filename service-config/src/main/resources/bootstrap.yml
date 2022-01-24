@@ -7,6 +7,7 @@ spring:
       server:
         git:
           uri: https://github.com/felapton89/microservice-demo.git
+          default-label: dev
           searchPaths: config-data
           username: ${GIT_USER}
           password: ${GIT_PASSWORD}
