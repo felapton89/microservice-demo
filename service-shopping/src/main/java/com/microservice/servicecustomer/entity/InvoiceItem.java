@@ -1,5 +1,6 @@
 package com.microservice.servicecustomer.entity;
 
+import com.microservice.servicecustomer.model.Product;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -24,6 +25,9 @@ public class InvoiceItem {
 
     @Transient
     private double subTotal;
+
+    @Transient
+    private Product product;
 
     public double getSubtotal(){
         if (this.quantity > 0 && this.price > 0){

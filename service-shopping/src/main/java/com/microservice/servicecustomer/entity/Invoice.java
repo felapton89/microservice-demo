@@ -1,6 +1,7 @@
 package com.microservice.servicecustomer.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.microservice.servicecustomer.model.Customer;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -40,5 +41,8 @@ public class Invoice {
     public void prePersist(){
         this.creatAt = LocalDate.now();
     }
+
+    @Transient
+    private Customer customer;
 
 }
