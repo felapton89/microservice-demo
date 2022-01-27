@@ -7,6 +7,7 @@ import com.microservice.serviceproduct.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.validation.ValidationException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -71,7 +72,11 @@ public class ProductServiceImpl implements ProductService {
                 .orElseThrow(
                         () -> new IllegalStateException("Product not found")
                 );
-        updateStockProduct.setStock(updateStockProduct.getStock() + quantity);
-        productRepository.save(updateStockProduct);
+        if ((updateStockProduct.getStock() + quantity) < 0) {
+            throw new ValidationException("Not enough stock");
+        } else {
+            updateStockProduct.setStock(updateStockProduct.getStock() + quantity);
+            productRepository.save(updateStockProduct);
+        }
     }
 }

@@ -73,7 +73,7 @@ public class ProductController {
         return ResponseEntity.ok().build();
     }
 
-    @PatchMapping("/{id}/stock")
+    @GetMapping("/{id}/stock")
     public ResponseEntity<?> updateStock(@PathVariable("id") Long id,
                                          @RequestParam("quantity") int quantity) {
         productService.updateStock(id, quantity);

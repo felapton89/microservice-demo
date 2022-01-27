@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 import java.time.LocalDate;
 
 @Entity
@@ -26,7 +25,6 @@ public class Product {
     @NotBlank(message = "Name required")
     private String name;
     private String description;
-    @Positive(message = "Value must be greater than zero")
     private int stock;
     private double price;
     private String status;

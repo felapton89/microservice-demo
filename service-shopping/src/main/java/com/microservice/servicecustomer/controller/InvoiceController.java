@@ -11,7 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("invoices")
+@RequestMapping("/invoices")
 public class InvoiceController {
 
     @Autowired
